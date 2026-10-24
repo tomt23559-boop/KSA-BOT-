@@ -106,3 +106,19 @@ const createTicketHandler = {
   name: 'create_ticket',
   async execute(interaction, client) {
     try {
+      // الكود الأصلي لإنشاء التذكرة يمشي طبيعي هنا...
+      
+      // ملاحظة: لو كان البوت يرسل رسالة إشعار `Ticket Created` في الروم، 
+      // ضع أمر الحذف التلقائي بعدها مباشرة بهذا الشكل:
+      /*
+      const sentMessage = await interaction.channel.send({ content: 'Ticket Created' });
+      setTimeout(() => {
+        sentMessage.delete().catch(() => {});
+      }, 2000); // تنحذف خلال ثانيتين تلقائياً
+      */
+
+    } catch (error) {
+      await handleInteractionError(interaction, error);
+    }
+  },
+};
