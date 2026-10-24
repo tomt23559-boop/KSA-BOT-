@@ -158,4 +158,4 @@ export const musicButtonHandler = {
     },
 };
 
-export default musicButtonHandler; 
+export default musicButtonHandler;
