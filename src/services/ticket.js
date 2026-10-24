@@ -125,14 +125,13 @@ export async function createTicket(guild, member, categoryId, reason = 'No reaso
       }
     }
 
-    // التعديل هنا: منع @everyone نهائياً وإعطاء الصلاحية لصاحب التذكرة والمشرفين فقط
     const channel = await guild.channels.create({
       name: channelName,
       type: ChannelType.GuildText,
       parent: category?.id,
       permissionOverwrites: [
         {
-          id: guild.id, // منع الجميع من رؤية التذكرة
+          id: guild.id,
           deny: [
             PermissionFlagsBits.ViewChannel,
             PermissionFlagsBits.SendMessages,
@@ -140,7 +139,7 @@ export async function createTicket(guild, member, categoryId, reason = 'No reaso
           ],
         },
         {
-          id: member.id, // السماح لصاحب التذكرة فقط
+          id: member.id,
           allow: [
             PermissionFlagsBits.ViewChannel,
             PermissionFlagsBits.SendMessages,
@@ -149,7 +148,7 @@ export async function createTicket(guild, member, categoryId, reason = 'No reaso
           ],
         },
         ...(config.ticketStaffRoleId ? [{
-          id: config.ticketStaffRoleId, // السماح للمشرفين
+          id: config.ticketStaffRoleId,
           allow: [
             PermissionFlagsBits.ViewChannel,
             PermissionFlagsBits.SendMessages,
@@ -332,7 +331,7 @@ export async function closeTicket(channel, closer, reason = 'No reason provided'
         .setLabel('Reopen Ticket')
         .setStyle(ButtonStyle.Success)
         .setEmoji('🔓'),
-      new ButtonBuilder()
+      newButtonBuilder()
         .setCustomId('ticket_delete')
         .setLabel('Delete Ticket')
         .setStyle(ButtonStyle.Danger)
